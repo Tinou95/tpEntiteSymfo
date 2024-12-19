@@ -1,0 +1,9 @@
+{# templates/home/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue, {{ app.user.username }}!</h1>
+    <p>Vous êtes connecté et pouvez maintenant accéder à votre page d'accueil sécurisée.</p>
+{% endblock %}
