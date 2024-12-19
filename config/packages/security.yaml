@@ -1,0 +1,29 @@
+security:
+    password_hashers:
+        App\Entity\User:
+            algorithm: bcrypt  # Utilisation de bcrypt pour le hash des mots de passe
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            # Pour autoriser un utilisateur non authentifié (public accès)
+            security: false  # Remplace 'anonymous: true' par 'security: false'
+            form_login:
+                login_path: app_login
+                check_path: app_login
+            logout:
+                path: app_logout
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: ROLE_USER }
+        - { path: ^/banned, roles: ROLE_BANNED }
