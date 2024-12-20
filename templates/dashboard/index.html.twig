@@ -1,0 +1,22 @@
+{# templates/dashboard/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue {{ user.firstName }} {{ user.lastName }}</h1>
+
+    <p>Rôle(s) : {{ user.roles | join(', ') }}</p>
+
+    <h2>Contenu dynamique</h2>
+    {% if 'ROLE_ADMIN' in user.roles %}
+        <p><a href="{{ path('admin_dashboard') }}">Accéder à l'administration</a></p>
+    {% endif %}
+    {% if 'ROLE_USER' in user.roles %}
+        <p><a href="{{ path('user_profile') }}">Accéder à votre profil</a></p>
+    {% endif %}
+    {% if 'ROLE_BANNED' in user.roles %}
+        <p>Vous êtes banni. Veuillez contacter l'administrateur.</p>
+    {% endif %}
+{% endblock %}
