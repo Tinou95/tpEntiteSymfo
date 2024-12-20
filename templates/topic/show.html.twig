@@ -1,33 +1,33 @@
-{# templates/category/show.html.twig #}
+{# templates/topic/show.html.twig #}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ category.name }} - Category</title>
+    <title>{{ topic.title }} - Topic</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
 
     <header>
-        <h1>{{ category.name }}</h1>
+        <h1>{{ topic.title }}</h1>
         <nav>
             <ul>
                 <li><a href="{{ path('app_home') }}">Home</a></li>
-                <li><a href="{{ path('app_login') }}">Login</a></li>
+                <li><a href="{{ path('app_category_show', { id: topic.category.id }) }}">Back to Category</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h2>Topics</h2>
+        <h2>Content</h2>
+        <p>{{ topic.content }}</p>
+
+        <h2>Replies</h2>
         <ul>
-            {% for topic in category.topics %}
-                <li>
-                    <h3>{{ topic.title }}</h3>
-                    <p>{{ topic.content }}</p>
-                </li>
+            {% for reply in topic.replies %}
+                <li>{{ reply.content }}</li>
             {% endfor %}
         </ul>
     </main>

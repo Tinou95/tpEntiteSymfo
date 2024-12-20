@@ -1,5 +1,3 @@
-{# templates/home/index.html.twig #}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,18 +23,16 @@
         <div class="categories">
             {% for category in categories %}
                 <div class="category">
-                    <h3>{{ category.name }}</h3>
+                    <h3>
+                        <a href="{{ path('app_category_show', { id: category.id }) }}">{{ category.name }}</a>
+                    </h3>
                     <ul>
                         {% for topic in category.topics %}
                             <li>
-                                <a href="#">{{ topic.title }}</a>
-                                <p>{{ topic.content }}</p>
-                                <h4>Replies:</h4>
-                                <ul>
-                                    {% for reply in topic.replies %}
-                                        <li>{{ reply.content }}</li>
-                                    {% endfor %}
-                                </ul>
+                                <a href="{{ path('app_topic_show', { id: topic.id }) }}">
+                                    <strong>{{ topic.title }}</strong>
+                                </a>
+                                <p>{{ topic.content|length > 100 ? topic.content[:100] ~ '...' : topic.content }}</p>
                             </li>
                         {% endfor %}
                     </ul>
