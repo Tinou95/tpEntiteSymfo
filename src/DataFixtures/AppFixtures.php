@@ -1,7 +1,5 @@
 <?php
 
-// src/DataFixtures/AppFixtures.php
-
 namespace App\DataFixtures;
 
 use App\Entity\User;
@@ -15,7 +13,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // Categories
+        // Ajout des catégories
         $category1 = new Category();
         $category1->setName('PHP');
         $manager->persist($category1);
@@ -24,20 +22,20 @@ class AppFixtures extends Fixture
         $category2->setName('Symfony');
         $manager->persist($category2);
 
-        // Topics
+        // Ajout des sujets
         $topic1 = new Topic();
         $topic1->setTitle('Quel est le meilleur framework PHP ?')
                ->setContent('Je cherche à savoir quel est le meilleur framework PHP ?')
                ->setCategory($category1);
         $manager->persist($topic1);
 
-        // Reply
+        // Ajout des réponses
         $reply1 = new Reply();
         $reply1->setContent('Je pense que Symfony est le meilleur framework PHP.')
                ->setTopic($topic1);
         $manager->persist($reply1);
 
-        // User
+        // Ajout des utilisateurs
         $user = new User();
         $user->setEmail('user@example.com')
              ->setPassword(password_hash('password', PASSWORD_BCRYPT))

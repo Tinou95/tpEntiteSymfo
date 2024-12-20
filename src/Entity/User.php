@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
+#[ORM\Table(name: "users")]
 class User implements UserInterface
 {
     #[ORM\Id]
@@ -74,9 +75,10 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getUsername(): string
+    public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        // The unique identifier for the user is the email
+        return $this->email;
     }
 
     public function getFirstName(): string
@@ -101,8 +103,8 @@ class User implements UserInterface
         return $this;
     }
 
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
-        // Ne rien faire pour ce TP
+        // Clear sensitive data if any
     }
 }
