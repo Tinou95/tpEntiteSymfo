@@ -1,20 +1,53 @@
-{% extends 'base.html.twig' %}
+{# templates/home/index.html.twig #}
 
-{% block title %}Hello HomeController!{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - My Symfony Project</title>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+</head>
+<body>
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <header>
+        <h1>Welcome to the Symfony Forum</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ path('app_home') }}">Home</a></li>
+                <li><a href="{{ path('app_login') }}">Login</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <main>
+        <h2>Categories</h2>
+        <div class="categories">
+            {% for category in categories %}
+                <div class="category">
+                    <h3>{{ category.name }}</h3>
+                    <ul>
+                        {% for topic in category.topics %}
+                            <li>
+                                <a href="#">{{ topic.title }}</a>
+                                <p>{{ topic.content }}</p>
+                                <h4>Replies:</h4>
+                                <ul>
+                                    {% for reply in topic.replies %}
+                                        <li>{{ reply.content }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/app/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/app/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
-{% endblock %}
+    <footer>
+        <p>&copy; 2024 My Symfony Project</p>
+    </footer>
+
+</body>
+</html>

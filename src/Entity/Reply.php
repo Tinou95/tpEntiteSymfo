@@ -1,7 +1,5 @@
 <?php
 
-// src/Entity/Reply.php
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -18,6 +16,7 @@ class Reply
     private $content;
 
     #[ORM\ManyToOne(targetEntity: Topic::class, inversedBy: "replies")]
+    #[ORM\JoinColumn(nullable: false)]
     private $topic;
 
     public function getId(): ?int
