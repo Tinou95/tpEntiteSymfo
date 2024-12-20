@@ -15,7 +15,7 @@
         <nav>
             <ul>
                 <li><a href="{{ path('app_home') }}">Home</a></li>
-                <li><a href="{{ path('app_login') }}">Login</a></li>
+                <li><a href="{{ path('app_home') }}">Back to Home</a></li> <!-- Added link to home -->
             </ul>
         </nav>
     </header>
@@ -25,7 +25,9 @@
         <ul>
             {% for topic in category.topics %}
                 <li>
-                    <h3>{{ topic.title }}</h3>
+                    <h3>
+                        <a href="{{ path('app_topic_show', { id: topic.id }) }}">{{ topic.title }}</a>
+                    </h3>
                     <p>{{ topic.content }}</p>
                 </li>
             {% endfor %}
